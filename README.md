@@ -3,6 +3,9 @@ Projeto de diversas disciplinas do sexto período do curso de Tecnologias em Sis
 Codificado em Angular, vai ser integrado a API em Ruby on Rails.
 Projeto desenvolvido em Angular 9.0.0
 # Servidor de desenvolvimento
-Run ng serve --open
+Instalação da versão Angular do projeto
+npm install --global @angular/cli@9.0.1
+Executar no prompt de comando, no diretório do projeto Angular:
+ng serve --open
 Run npm run json
 
