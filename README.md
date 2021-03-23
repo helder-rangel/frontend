@@ -6,7 +6,6 @@
 ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@angular/core)
 ![GitHub top language](https://img.shields.io/github/languages/top/helder-rangel/frontend)
 ![GitHub contributors](https://img.shields.io/github/contributors/helder-rangel/frontend)
-[![Downloads Stats][npm-downloads]][npm-url]
 ![Twitter Follow](https://img.shields.io/twitter/follow/helderrangel?label=seguir&style=social)
 ![GitHub all releases](https://img.shields.io/github/downloads/helder-rangel/frontend/total)
 
