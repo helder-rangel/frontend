@@ -17,6 +17,8 @@ Interface desenvolvida em Angular 9.0
 É interface em Angular de uma API de comércio eletrônico, sem opção de pagamento.
 
 ## Instalação
+Instale Node.js na versão 12.15.0:
+https://nodejs.org/dist/v12.15.0/
 
 Linux:
 
