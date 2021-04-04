@@ -3,8 +3,9 @@
     <mat-toolbar-row>
       <span>ComIntegrada</span>
       <span class="spacer"></span>
-      <span><a class="nav-link" routerLink="/store" routerLinkActive="active">Store</a></span>
-      <span><a class="nav-link"  routerLink="/login" routerLinkActive="active">Login</a></span>
+      <span *ngIf="!(authService.userSignedIn$ | async)" ><a class="nav-link" routerLink="/store" routerLinkActive="active">Store</a></span>
+      <span *ngIf="!(authService.userSignedIn$ | async)"><a class="nav-link"  routerLink="/login" routerLinkActive="active">Login</a></span>
+      <span *ngIf="(authService.userSignedIn$ | async)"><a class="nav-link"  (click)="logOut()">Logout</a></span>
     </mat-toolbar-row>
   </nav>
 </mat-toolbar>

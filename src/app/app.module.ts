@@ -14,7 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { StoreModule } from './model/store.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
-
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularTokenModule.forRoot({
-      apiBase:                    null,
+      apiBase:                    'http://localhost:3000/api',
       apiPath:                    null,
 
       signInPath:                 'auth/sign_in',
@@ -63,7 +63,7 @@ import { LoginComponent } from './login/login.component';
       oAuthWindowOptions:         null,
     })
   ],
-  providers: [ AngularTokenModule ],
+  providers: [ AngularTokenModule, AuthService ],
   bootstrap: [AppComponent]
 })
 

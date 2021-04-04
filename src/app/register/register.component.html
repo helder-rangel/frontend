@@ -9,11 +9,11 @@
         <input
           matInput
           class="validate"
-          id="nome"
-          name="nome"
-          type="nome"
+          id="name"
+          name="name"
+          type="text"
           placeholder="Digite seu nome"
-          [(ngModel)]="signUpUser.nome"
+          [(ngModel)]="signUpUser.name"
         >
       </mat-form-field>
 
@@ -21,12 +21,12 @@
           <mat-label>Email</mat-label>
           <input
             class="validate"
-            id="email"
-            name="email"
+            id="login"
+            name="login"
             type="email"
             matInput
             placeholder="Digite seu email"
-            [(ngModel)]="signUpUser.email"
+            [(ngModel)]="signUpUser.login"
             required
           >
         </mat-form-field>
