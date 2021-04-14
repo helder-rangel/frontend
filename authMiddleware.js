@@ -11,6 +11,9 @@ function requiresAuth(method, url) {
         .find(p => url.startsWith(p)) !== undefined;
 }
 module.exports = function (req, res, next) {
+    console.log('res -- ', res)
+    console.log('req -- ', req)
+    console.log('next -- ', next)
     if (req.url.endsWith("/login") && req.method == "POST") {
         if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD) {
             let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);

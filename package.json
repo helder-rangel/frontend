@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
     "angular-token": "^7.0.1",
+    "ng-token-auth": "0.0.30",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
