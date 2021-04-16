@@ -1,0 +1,123 @@
+<div class="container">
+  <form (ngSubmit)="onSignUpSubmit()" #f="ngForm">
+    <div class="column">
+      <h1>Crie sua conta</h1>
+      <mat-form-field appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          class="validate"
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Digite seu nome"
+          [(ngModel)]="signUpUser.name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>CPF/CNPJ</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option value="CPF">CPF</mat-option>
+          <mat-option value="CNPJ">CNPJ</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ selected }}</mat-label>
+        <input
+          matInput
+          class="validate"
+          id="documento"
+          name="documento"
+          type="text"
+          placeholder="Digite seu documento"
+          [(ngModel)]="signUpUser.documento"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          class="validate"
+          id="login"
+          name="login"
+          type="email"
+          matInput
+          placeholder="Digite seu email"
+          [(ngModel)]="signUpUser.login"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input
+          class="validate"
+          id="password"
+          type="password"
+          required
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          placeholder="Digite sua senha"
+          [(ngModel)]="signUpUser.password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Confirmar senha</mat-label>
+        <input
+          class="validate"
+          id="password_confirmation"
+          type="password"
+          required
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          placeholder="Confirme sua senha"
+          name="password_confirmation"
+          [(ngModel)]="signUpUser.passwordConfirmation"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <span
+        *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
+        style="color: red"
+      >
+        A senha devem ser iguais
+      </span>
+
+      <div class="btn-container">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"
+          >Faça login em vez disso</a
+        >
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="
+            !f.valid ||
+            !(signUpUser.password == signUpUser.passwordConfirmation)
+          "
+        >
+          Cadastrar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

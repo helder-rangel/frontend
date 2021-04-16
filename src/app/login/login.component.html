@@ -1,0 +1,56 @@
+<div class="container">
+  <form (ngSubmit)="onSignInSubmit()" #f="ngForm" >
+
+
+    <div class="column">
+      <h1>Fazer login</h1>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            class="validate"
+            id="login"
+            name="login"
+            type="email"
+            matInput
+            placeholder="Digite seu email"
+            [(ngModel)]="signInUser.login"
+            required
+          >
+        </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input
+          class="validate"
+          id="password"
+          type="password"
+          required
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          name='password'
+          placeholder="Digite sua senha"
+          [(ngModel)]="signInUser.password"
+        >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="btn-container">
+
+        <a class="nav-link"  routerLink="/register" routerLinkActive="active">Criar conta</a>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!(f.valid)"
+        >Login</button>
+
+      </div>
+
+    </div>
+
+
+  </form>
+</div>
