@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators'
 export class AuthService {
   userSignedIn$: Subject<boolean> = new Subject()
 
-  constructor(public authService: AngularTokenService) {
-    this.authService
+  constructor(public tokenAuthService: AngularTokenService) {
+    this.tokenAuthService
       .validateToken()
       .subscribe((res) =>
         res.status == 200
@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   logOutUser(): Observable<HttpClient> {
-    return this.authService.signOut().pipe(
+    return this.tokenAuthService.signOut().pipe(
       map((res) => {
         this.userSignedIn$.next(false)
         return res
@@ -32,7 +32,7 @@ export class AuthService {
     password: string
     passwordConfirmation: string
   }): Observable<Response> {
-    return this.authService.registerAccount(signUpData).pipe(
+    return this.tokenAuthService.registerAccount(signUpData).pipe(
       map((res) => {
         this.userSignedIn$.next(true)
         return res
@@ -44,7 +44,7 @@ export class AuthService {
     login: string
     password: string
   }): Observable<Response> {
-    return this.authService.signIn(signInData).pipe(
+    return this.tokenAuthService.signIn(signInData).pipe(
       map((res) => {
         this.userSignedIn$.next(true)
         return res
@@ -53,9 +53,8 @@ export class AuthService {
   }
 
   getAuthorizationToken(): Observable<Response> {
-    return this.authService.validateToken().pipe(
+    return this.tokenAuthService.validateToken().pipe(
       map((res) => {
-        console.log('----------- ', res)
         this.userSignedIn$.next(true)
         return res
       })

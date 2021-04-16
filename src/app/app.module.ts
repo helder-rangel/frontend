@@ -15,8 +15,9 @@ import { StoreModule } from './model/store.module'
 import { ToolbarComponent } from './toolbar/toolbar.component'
 import { LoginComponent } from './login/login.component'
 import { AuthService } from './services/auth.service'
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { AdminComponent } from './admin/admin.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ToolbarComponent,
     LoginComponent,
     PageNotFoundComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,31 +41,31 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule,
     AngularTokenModule.forRoot({
       apiBase: 'http://localhost:3000/api',
-      apiPath: null,
+      // apiPath: null,
 
-      signInPath: 'auth/sign_in',
-      signInRedirect: null,
-      signInStoredUrlStorageKey: null,
+      // signInPath: 'auth/sign_in',
+      // signInRedirect: null,
+      // signInStoredUrlStorageKey: null,
 
-      signOutPath: 'auth/sign_out',
-      validateTokenPath: 'auth/validate_token',
-      signOutFailedValidate: false,
+      // signOutPath: 'auth/sign_out',
+      // validateTokenPath: 'auth/validate_token',
+      // signOutFailedValidate: false,
 
-      registerAccountPath: 'auth',
-      deleteAccountPath: 'auth',
-      registerAccountCallback: window.location.href,
+      // registerAccountPath: 'auth',
+      // deleteAccountPath: 'auth',
+      // registerAccountCallback: window.location.href,
 
-      updatePasswordPath: 'auth',
-      resetPasswordPath: 'auth/password',
-      resetPasswordCallback: window.location.href,
+      // updatePasswordPath: 'auth',
+      // resetPasswordPath: 'auth/password',
+      // resetPasswordCallback: window.location.href,
 
-      oAuthBase: window.location.origin,
-      oAuthPaths: {
-        github: 'auth/github',
-      },
-      oAuthCallbackPath: 'oauth_callback',
-      oAuthWindowType: 'newWindow',
-      oAuthWindowOptions: null,
+      // oAuthBase: window.location.origin,
+      // oAuthPaths: {
+      //   github: 'auth/github',
+      // },
+      // oAuthCallbackPath: 'oauth_callback',
+      // oAuthWindowType: 'newWindow',
+      // oAuthWindowOptions: null,
     }),
   ],
   providers: [AngularTokenModule, AuthService, AuthGuard],

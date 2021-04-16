@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core'
-import { AngularTokenService } from 'angular-token'
 import { Router } from '@angular/router'
 import { AuthService } from '../services/auth.service'
 
@@ -17,11 +16,7 @@ export class LoginComponent implements OnInit {
   hide = true
 
   @Output() onFormResult = new EventEmitter<any>()
-  constructor(
-    private router: Router,
-    private tokenAuthSerivce: AngularTokenService,
-    public authService: AuthService
-  ) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -29,8 +24,19 @@ export class LoginComponent implements OnInit {
     this.authService.logInUser(this.signInUser).subscribe(
       (res) => {
         if (res.status == 200) {
+          // window.localStorage.setItem(
+          //   'accessToken',
+          //   res.headers.get('access-token')
+          // )
+          // window.localStorage.setItem('client', res.headers.get('client'))
+          // window.localStorage.setItem('uid', res.headers.get('uid'))
+          // window.localStorage.setItem(
+          //   'content-type',
+          //   res.headers.get('content-type')
+          // )
+
           this.onFormResult.emit({ signedIn: true, res })
-          this.router.navigate(['/'])
+          this.router.navigate(['/store'])
         }
       },
       (err) => {
@@ -39,20 +45,4 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
-  //   this.tokenAuthSerivce.signIn(this.signInUser).subscribe(
-
-  //       res => {
-  //         console.log('res login ', res)
-  //         if(res.status == 200){
-  //           this.onFormResult.emit({signedIn: true, res});
-  //           this.router.navigate(['/']);
-  //         }
-  //       },
-
-  //       err => {
-  //         console.log('err:', err);
-  //         this.onFormResult.emit({signedIn: false, err});
-  //       }
-  //   )
 }
