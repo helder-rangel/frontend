@@ -1,1 +1,116 @@
-<p>register works!</p>
+<div class="container register-conteiner">
+  <div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+      <h4 class="card-header">Crie sua conta</h4>
+      <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Digite seu nome"
+              class="form-control input"
+              [ngClass]="{ 'is-invalid': submitted && fields.name.errors }"
+            />
+            <div
+              *ngIf="submitted && fields.name.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.name.errors.required">Nome é obrigatório</div>
+              <div *ngIf="fields.name.errors.minlength">
+                Nome deve ter no mínimo 3 caracters.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Digite seu email"
+              class="form-control input"
+              [ngClass]="{ 'is-invalid': submitted && fields.email.errors }"
+            />
+            <div
+              *ngIf="submitted && fields.email.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.email.errors.required">
+                Email é obrigatório
+              </div>
+              <div *ngIf="fields.email.errors.email">
+                Digite um e-mail válido
+              </div>
+            </div>
+          </div>
+          <div class="container-password">
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                formControlName="password"
+                class="form-control input"
+                [ngClass]="{
+                  'is-invalid': submitted && fields.password.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && fields.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="fields.password.errors.required">
+                  Senha é obrigatória
+                </div>
+                <div *ngIf="fields.password.errors.minlength">
+                  Senha deve ter no mínimo 6 caracters.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Confirmar senha</label>
+              <input
+                type="password"
+                placeholder="Confirme sua senha"
+                formControlName="password_confirmation"
+                class="form-control input"
+                [ngClass]="{
+                  'is-invalid': submitted && fields.password_confirmation.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && fields.password_confirmation.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="fields.password_confirmation.errors.required">
+                  Confirme sua senha.
+                </div>
+                <div
+                  *ngIf="fields.password_confirmation.errors.passwordDoNotMatch"
+                >
+                  As senhas não coincidem.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"
+              >Faça login em vez disso</a
+            >
+            <button [disabled]="loading" class="btn primary-btn">
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Criar
+            </button>
+          </div>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+            {{ error }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

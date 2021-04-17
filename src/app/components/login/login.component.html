@@ -43,13 +43,18 @@
               </div>
             </div>
           </div>
-          <button [disabled]="loading" class="btn primary-btn">
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
-            Login
-          </button>
+          <div class="btn-container">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active"
+              >Criar conta</a
+            >
+            <button [disabled]="loading" class="btn primary-btn">
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Login
+            </button>
+          </div>
           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
             {{ error }}
           </div>

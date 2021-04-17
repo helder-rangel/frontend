@@ -38,6 +38,30 @@ export class AuthenticationService {
       );
   }
 
+  register(
+    name: string,
+    email: string,
+    password: string,
+    password_confirmation: string
+  ) {
+    return this.http
+      .post<any>(`${environment.SERVER_URL}/auth/register`, {
+        name,
+        email,
+        password,
+        password_confirmation,
+      })
+      .pipe(
+        map((user) => {
+          console.log("===== new user ", user);
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem("currentUser", JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        })
+      );
+  }
+
   logout() {
     // remove user from local storage to log user out
     console.log("------------------------- &&");
