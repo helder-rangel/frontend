@@ -1,0 +1,25 @@
+.register-conteiner {
+  margin-bottom: 3rem;
+}
+
+.btn-container {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  a {
+    font-size: 14px;
+  }
+}
+
+.container-password {
+  display: flex;
+  div:first-of-type {
+    margin-right: 10px;
+  }
+
+  @media only screen and (max-width: 500px) {
+    flex-flow: column;
+  }
+}
