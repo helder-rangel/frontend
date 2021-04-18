@@ -18,13 +18,13 @@
         <li>
           <a href="#"><i class="fa fa-dollar"></i> R$</a>
         </li>
-        <li nf>
+        <li>
           <a (click)="logout()"><i class="fa fa-user-o"></i>Logout</a>
           <!-- <a href="#"><i class="fa fa-user-o"></i> Minha Conta</a> -->
         </li>
       </ul>
       <ul class="header-links pull-right" *ngIf="!currentUser">
-        <li nf>
+        <li>
           <a routerLink="/login" routerLinkActive="active"
             ><i class="fa fa-user-o"></i>Login</a
           >

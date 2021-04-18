@@ -20,12 +20,6 @@ export class ProductService {
       JSON.parse(localStorage.getItem("currentUser"))
     );
     this.currentUser = this.currentUserSubject.asObservable();
-
-    console.log("this.currentUserSubject.value ", this.currentUserSubject);
-    console.log(
-      "this.currentUserSubject.value ",
-      this.currentUserSubject.value
-    );
   }
 
   showMessage() {

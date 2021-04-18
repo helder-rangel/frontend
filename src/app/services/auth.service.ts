@@ -53,7 +53,6 @@ export class AuthenticationService {
       })
       .pipe(
         map((user) => {
-          console.log("===== new user ", user);
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentUser", JSON.stringify(user));
           this.currentUserSubject.next(user);
@@ -64,7 +63,6 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    console.log("------------------------- &&");
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
   }

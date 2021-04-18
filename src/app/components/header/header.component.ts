@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    console.log("logout ======= ", this.currentUser);
     this.authenticationService.logout();
     this.router.navigate(["/login"]);
   }
