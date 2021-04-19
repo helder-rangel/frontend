@@ -70,6 +70,7 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     console.log("------------------------- &&");
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("token")
     this.currentUserSubject.next(null);
   }
 }
