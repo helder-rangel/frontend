@@ -11,7 +11,7 @@ export interface ProductModelServer{
     preco: number;
     fabricante:string;
     categoria:string;
-    quantidade:Number
+    quant:Number
 
 }
 

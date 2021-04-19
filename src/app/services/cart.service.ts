@@ -127,17 +127,15 @@ export class CartService{
         
 
         // 1. Se o produto escolhido já estiver na matriz do carrinho
-        if (index != -1) {
-          quantity = 2;
-          console.log(quantity +"++++++++++++++++++++++++++")
+        if (index !== -1) {
          
-          if (quantity != undefined && quantity <= prod.quantidade) {
+          if (quantity != undefined && quantity <= prod.quant) {
             
             
-            this.cartDataServer.data[index].numInCart = this.cartDataServer.data[index].numInCart < prod.quantidade ? quantity : prod.quantidade;
+            this.cartDataServer.data[index].numInCart = this.cartDataServer.data[index].numInCart < prod.quant ? quantity : prod.quant;
           } else {
             //@ts-ignore
-            this.cartDataServer.data[index].numInCart < prod.quantidade ? this.cartDataServer.data[index].numInCart++ : prod.quantidade;
+            this.cartDataServer.data[index].numInCart < prod.quant ? this.cartDataServer.data[index].numInCart++ : prod.quant;
           }
 
 
@@ -180,7 +178,7 @@ export class CartService{
     let data = this.cartDataServer.data[index];
     if (increase) {
       //@ts-ignore
-      data.numInCart < data.product.quantidade ? data.numInCart+1 : data.product.quantidade;
+      data.numInCart < data.product.quant ? data.numInCart+1 : data.product.quant;
       this.cartDataClient.prodData[index].incart = data.numInCart;
       this.CalculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;
