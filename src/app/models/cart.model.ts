@@ -4,7 +4,7 @@ export interface CartModelServer {
   total: Number;
   data: [{
     product: ProductModelServer,
-    numInCart: Number
+    numInCart: number
   }];
 }
 
@@ -12,6 +12,6 @@ export interface CartModelPublic {
   total: Number;
   prodData: [{
     id: Number,
-    incart: Number
+    incart: number
   }]
 }
