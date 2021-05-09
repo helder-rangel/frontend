@@ -17,7 +17,7 @@ import { User } from "../models/user.model";
     providedIn: 'root'
 })
 
-export class CartService{
+export class CartService {
 
     ServerURL = environment.SERVER_URL;
     private currentUserSubject: BehaviorSubject<User>;
@@ -50,37 +50,42 @@ export class CartService{
         JSON.parse(localStorage.getItem("currentUser"))
     );
     this.currentUser = this.currentUserSubject.asObservable();
+// source._value.user_id
+    if (!this.currentUserSubject?.value) {
+      this.router.navigate(["/login"]);
+    } else {
+      console.log(this.currentUser)
+      this.cartTotal$.next(this.cartDataServer.total);
+      this.cartDataObs$.next(this.cartDataServer);
 
-    this.cartTotal$.next(this.cartDataServer.total);
-    this.cartDataObs$.next(this.cartDataServer);
+      let info: CartModelPublic = JSON.parse(localStorage.getItem('cart'));
 
-    let info: CartModelPublic = JSON.parse(localStorage.getItem('cart'));
-
-    if (info != null && info != undefined && info.prodData[0].incart != 0) {
-      // assign the value to our data variable which corresponds to the LocalStorage data format
-      this.cartDataClient = info;
-      // Loop through each entry and put it in the cartDataServer object
-      this.cartDataClient.prodData.forEach(p => {
-          //@ts-ignore
-        this.productService.getSingleProduct(p.id).subscribe((actualProdInfo: ProductModelServer) => {
-          if (this.cartDataServer.data[0].numInCart == 0) {
-            this.cartDataServer.data[0].numInCart = p.incart;
-            this.cartDataServer.data[0].product = actualProdInfo;
-            this.CalculateTotal();
-            this.cartDataClient.total = this.cartDataServer.total;
-            localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-          } else {
-            this.cartDataServer.data.push({
-              numInCart: p.incart,
-              product: actualProdInfo
-            });
-            this.CalculateTotal();
-            this.cartDataClient.total = this.cartDataServer.total;
-            localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-          }
-          this.cartDataObs$.next({...this.cartDataServer});
+      if (info != null && info != undefined && info.prodData[0].incart != 0) {
+        // assign the value to our data variable which corresponds to the LocalStorage data format
+        this.cartDataClient = info;
+        // Loop through each entry and put it in the cartDataServer object
+        this.cartDataClient.prodData.forEach(p => {
+            //@ts-ignore
+          this.productService.getSingleProduct(p.id).subscribe((actualProdInfo: ProductModelServer) => {
+            if (this.cartDataServer.data[0].numInCart == 0) {
+              this.cartDataServer.data[0].numInCart = p.incart;
+              this.cartDataServer.data[0].product = actualProdInfo;
+              this.CalculateTotal();
+              this.cartDataClient.total = this.cartDataServer.total;
+              localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+            } else {
+              this.cartDataServer.data.push({
+                numInCart: p.incart,
+                product: actualProdInfo
+              });
+              this.CalculateTotal();
+              this.cartDataClient.total = this.cartDataServer.total;
+              localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+            }
+            this.cartDataObs$.next({...this.cartDataServer});
+          });
         });
-      });
+      }
     }
   }
 

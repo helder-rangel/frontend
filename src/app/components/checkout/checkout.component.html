@@ -20,31 +20,93 @@
         <div class="section-title">
           <h3 class="title">Endereço de Envio</h3>
         </div>
-        <div class="form-group">
-          <input class="input" type="text" name="first-name" placeholder="First Name">
-        </div>
-        <div class="form-group">
-          <input class="input" type="text" name="last-name" placeholder="Last Name">
-        </div>
-        <div class="form-group">
-          <input class="input" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <input class="input" type="text" name="address" placeholder="Address">
-        </div>
-        <div class="form-group">
-          <input class="input" type="text" name="city" placeholder="City">
-        </div>
-        <div class="form-group">
-          <input class="input" type="text" name="country" placeholder="Country">
-        </div>
-        <div class="form-group">
-          <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-        </div>
-        <div class="form-group">
-          <input class="input" type="tel" name="tel" placeholder="Telephone">
-        </div>
-        <div class="form-group">
+        <form [formGroup]="addressForm" (ngSubmit)="updateAddressSubmit()">
+          <div class="form-group">
+            <input
+              type="text"
+              formControlName="rua"
+              placeholder="Rua"
+              class="form-control input"
+              [ngClass]="{ 'is-invalid': submittedAddress && fields.rua.errors }"
+            />
+            <div
+              *ngIf="submittedAddress && fields.rua.errors"
+              class="invalid-feedback"
+              >
+              <div *ngIf="fields.rua.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input [ngClass]="{ 'is-invalid': submittedAddress && fields.numero.errors }" class="form-control input" type="text" formControlName="numero" placeholder="Numero">
+            <div
+              *ngIf="submittedAddress && fields.numero.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.numero.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control input" type="text" name="complemento" placeholder="Complemento">
+          </div>
+          <div class="form-group">
+            <input [ngClass]="{ 'is-invalid': submittedAddress && fields.bairro.errors }" class="form-control input" type="text" formControlName="bairro" placeholder="Bairro">
+            <div
+              *ngIf="submittedAddress && fields.bairro.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.bairro.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input [ngClass]="{ 'is-invalid': submittedAddress && fields.cidade.errors }" class="form-control input" type="text" formControlName="cidade" placeholder="Cidade">
+            <div
+              *ngIf="submittedAddress && fields.cidade.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.cidade.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input [ngClass]="{ 'is-invalid': submittedAddress && fields.estado.errors }" class="form-control input" type="text" formControlName="estado" placeholder="Estado">
+            <div
+              *ngIf="submittedAddress && fields.estado.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.estado.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input [ngClass]="{ 'is-invalid': submittedAddress && fields.cep.errors }" class="form-control input" type="text" formControlName="cep" placeholder="CEP">
+            <div
+              *ngIf="submittedAddress && fields.cep.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fields.cep.errors.required">
+                {{ requiredMsg }}
+              </div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button type="submit" [disabled]="loading" class="btn primary-btn" >
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Salvar
+            </button>
+          </div>
+        </form>
+        <!-- <div class="form-group">
           <div class="input-checkbox">
             <input type="checkbox" id="create-account">
             <label for="create-account">
@@ -56,55 +118,18 @@
               <input class="input" type="password" name="password" placeholder="Enter Your Password">
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- /Billing Details -->
 
       <!-- Shiping Details -->
-      <div class="shiping-details">
-        <div class="section-title">
-          <h3 class="title">Endereço de remessa</h3>
-        </div>
-        <div class="input-checkbox">
-          <input type="checkbox" id="shiping-address">
-          <label for="shiping-address">
-            <span></span>
-            Enviar para um endereço diferente?
-          </label>
-          <div class="caption">
-            <div class="form-group">
-              <input class="input" type="text" name="first-name" placeholder="First Name">
-            </div>
-            <div class="form-group">
-              <input class="input" type="text" name="last-name" placeholder="Last Name">
-            </div>
-            <div class="form-group">
-              <input class="input" type="email" name="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input class="input" type="text" name="address" placeholder="Address">
-            </div>
-            <div class="form-group">
-              <input class="input" type="text" name="city" placeholder="City">
-            </div>
-            <div class="form-group">
-              <input class="input" type="text" name="country" placeholder="Country">
-            </div>
-            <div class="form-group">
-              <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-            </div>
-            <div class="form-group">
-              <input class="input" type="tel" name="tel" placeholder="Telephone">
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- /Shiping Details -->
 
       <!-- Order notes -->
-      <div class="order-notes">
+      <!-- <div class="order-notes">
         <textarea class="input" placeholder="Order Notes"></textarea>
-      </div>
+      </div> -->
       <!-- /Order notes -->
     </div>
 
