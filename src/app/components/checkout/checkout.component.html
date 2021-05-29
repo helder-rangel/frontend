@@ -20,7 +20,22 @@
         <div class="section-title">
           <h3 class="title">Endereço de Envio</h3>
         </div>
-        <form [formGroup]="addressForm" (ngSubmit)="updateAddressSubmit()">
+        <div *ngIf="address">
+          <p>CEP: {{ address.cep }}</p>
+          <p>{{ address.rua }}, {{ address.numero }} {{ address.complemento }}</p>
+          <p>{{ address.bairro }} - {{ address.cidade }} - {{ address.estado }}</p>
+        </div>
+        <div class="btn-container btn-outro">
+          <button type="button" [disabled]="loading" (click)="handleAddress()" class="btn primary-btn" >
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Outro Endereço
+          </button>
+        </div>
+
+        <form *ngIf="otherAddress" [formGroup]="addressForm" (ngSubmit)="updateAddressSubmit()">
           <div class="form-group">
             <input
               type="text"
@@ -94,6 +109,9 @@
               <div *ngIf="fields.cep.errors.required">
                 {{ requiredMsg }}
               </div>
+              <div *ngIf="fields.cep.errors.cepInvalido">
+                Cep inválido
+              </div>
             </div>
           </div>
           <div class="btn-container">
@@ -160,14 +178,11 @@
       </div>
       <div class="payment-method">
         <div class="input-radio">
-          <input type="radio" name="payment" id="payment-1">
+          <input type="radio" [checked]="true" name="payment" id="payment-1">
           <label for="payment-1">
             <span></span>
             Transferência bancária direta
           </label>
-          <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
         </div>
         <div class="input-radio">
           <input type="radio" name="payment" id="payment-2">
@@ -175,29 +190,16 @@
             <span></span>
             Cartão de Credito
           </label>
-          <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
-        <div class="input-radio">
-          <input type="radio" name="payment" id="payment-3">
-          <label for="payment-3">
-            <span></span>
-            Sistema Paypal
-          </label>
-          <div class="caption">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
         </div>
       </div>
       <div class="input-checkbox">
-        <input type="checkbox" id="terms">
+        <input type="checkbox" id="terms" (click)="handleCheckbox()">
         <label for="terms">
           <span></span>
           Li e aceito os <a href="#">termos e condições</a>
         </label>
       </div>
-      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="cartTotal <= 0 " (click)="onCheckout()">Finalizar Pedido</button>
+      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="!checkoutBtn || cartTotal <= 0 " (click)="onCheckout()">Finalizar Pedido</button>
     </div>
     <!-- /Order Details -->
   </div>

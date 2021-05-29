@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { UserService } from './../../services/user.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -11,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../../models/user.model';
 import { AuthenticationService } from "../../services/auth.service";
 import { ToastrService } from 'ngx-toastr';
+import { Validations } from "../../helpers/validations";
 
 @Component({
   selector: 'app-checkout',
@@ -25,9 +27,12 @@ export class CheckoutComponent implements OnInit {
   currentUser: User;
   loading = false;
   submittedAddress = false;
+  address;
   error = "";
   checkoutForm: any;
-  requiredMsg = 'Campo é obrigatório'
+  requiredMsg = 'Campo é obrigatório';
+  checkoutBtn = false;
+  otherAddress = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +52,10 @@ export class CheckoutComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userService.getAdresses().subscribe(address => {
+      const filterAddress = address.filter(add => add.user.id === this.currentUser.user_id)[0]
+      this.address = filterAddress
+    })
     this.addressForm = this.formBuilder.group({
       rua: ['', Validators.required],
       numero: ['', Validators.required],
@@ -54,23 +63,23 @@ export class CheckoutComponent implements OnInit {
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
-      cep: ['', Validators.required],
-      // user_id: ['', []]
+      cep: ['', Validators.required, Validations.cepValidator]
     })
     this.cartService.cartDataObs$.subscribe(data => this.cartData = data);
     this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
   }
 
   get fields() {
-    console.log(this.addressForm)
     return this.addressForm.controls;
+  }
+
+  handleAddress() {
+    this.otherAddress = !this.otherAddress
   }
 
   updateAddressSubmit() {
     this.submittedAddress = true;
     if (this.addressForm.status === 'INVALID') {
-      console.log(this.addressForm)
-      console.log('this.fields ', this.fields)
       return
     }
     this.loading = true;
@@ -95,10 +104,15 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
+  handleCheckbox() {
+    this.checkoutBtn = !this.checkoutBtn
+  }
+
   onCheckout() {
     this.spinner.show().then(p => {
-       this.cartService.CheckoutFromCart(1);
+      console.log(p)
      });
+    this.cartService.CheckoutFromCart(this.currentUser.user_id);
 
 
    //console.log(this.checkoutForm.value);

@@ -22,6 +22,15 @@ export class UserService {
     return this.http.get<User>(`${environment.SERVER_URL}/users`);
   }
 
+  getAdresses(): any {
+    return this.http.get<any>(`${environment.SERVER_URL}/enderecos`, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.currentUserSubject?.value["access_token"]}`,
+        })
+    })
+  }
+
   updateAddress(
     rua: string,
     numero: string,

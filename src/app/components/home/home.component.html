@@ -71,8 +71,8 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4 col-sm-6" *ngFor="let p of data">
-            <div class="card my-2">
-              <img [src]="p.imagem" alt="{{p.nome}}" width="200px" class="card-img-top" (click)="selectProduct(p.id)" style="cursor:pointer;">
+            <div class="card my-2 text-center">
+              <img [src]="p.imagem" alt="{{p.nome}}" width="200px" class="card-img-top product-img" (click)="selectProduct(p.id)" style="cursor:pointer;">
               <div class="card-header">
                 <div class="card-title">
                   <p>{{p.nome | titlecase}}</p>

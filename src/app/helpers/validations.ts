@@ -1,4 +1,4 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, FormControl } from "@angular/forms";
 
 export class Validations {
   static ValidaCpf(controle: AbstractControl) {
@@ -56,5 +56,19 @@ export class Validations {
     controle
       .get("password_confirmation")
       .setErrors({ passwordDoNotMatch: true });
+  }
+
+  static cepValidator(control: AbstractControl) {
+    const cep = control.value
+    console.log(cep)
+    console.log(control)
+    if (cep && cep !== '') {
+      const validateCep = /^\d{5}(-)?\d{3}$/
+      // !validateCep.test(cep) && control
+      //   .get('cep')
+      //   .setErrors({ cepInvalido: true })
+      !validateCep.test(cep) && control.setErrors({ cepInvalido: true })
+      // return validateCep.test(cep) ? null : { cepInvalido: true }
+    }
   }
 }
