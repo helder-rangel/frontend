@@ -41,7 +41,6 @@ export class UserService {
     cep: string,
     user_id: string
   ) {
-    console.log(user_id)
     return this.http
       .post<any>(`${environment.SERVER_URL}/enderecos`, {
         rua,

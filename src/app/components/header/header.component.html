@@ -18,6 +18,9 @@
         <li>
           <a href="#"><i class="fa fa-dollar"></i> R$</a>
         </li>
+        <li *ngIf="currentUser">
+          <a href="/orders"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
+        </li>
         <li nf>
           <a (click)="logout()"><i class="fa fa-user-o"></i>Logout</a>
           <!-- <a href="#"><i class="fa fa-user-o"></i> Minha Conta</a> -->
@@ -138,7 +141,7 @@
                 </div>
                 <div class="cart-btns">
                   <a routerLink="/cart">View Cart</a>
-                  <a routerLink="/checkout"
+                  <a [routerLink]="currentUser ? ['/checkout'] : ['/login']"
                     >Checkout <i class="fa fa-arrow-circle-right"></i
                   ></a>
                 </div>

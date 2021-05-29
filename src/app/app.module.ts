@@ -20,6 +20,7 @@ import { RegisterComponent } from "./components/register/register.component";
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

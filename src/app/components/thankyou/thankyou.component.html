@@ -2,14 +2,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="jumbotron text-center">
-          <h1 class="display-3">Thank You!</h1>
-          <p class="lead"><strong>Please check your email</strong> for order confirmation.</p>
+          <h1 class="display-3">Obrigada!</h1>
+          <p class="lead">Sua compra foi realizada.</p>
           <hr>
           <p>
-  
+
           <p>Order Id : <strong>{{orderId}}</strong></p>
         </div>
-  
+
         <table class="table table-striped">
           <thead>
           <tr>
@@ -28,17 +28,16 @@
             <td>{{p.preco | currency:'USD'}}</td>
             <td>{{p.quant}}</td>
           </tr>
-  
+
           <tr class="border-0">
             <td style="border: none;"></td>
             <td></td>
             <td>TOTAL</td>
             <td>{{cartTotal | currency:'USD'}}</td>
-  
+
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  

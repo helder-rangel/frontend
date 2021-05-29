@@ -24,15 +24,19 @@ export class CheckoutComponent implements OnInit {
   cartTotal: Number;
   showSpinner: Boolean;
   addressForm: FormGroup;
+  shippingForm: FormGroup;
   currentUser: User;
   loading = false;
   submittedAddress = false;
-  address;
+  submittedShipping = false;
+  addresses;
   error = "";
   checkoutForm: any;
   requiredMsg = 'Campo é obrigatório';
   checkoutBtn = false;
   otherAddress = false;
+  selectedAddresss;
+  checkedAddress = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,9 +57,14 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getAdresses().subscribe(address => {
-      const filterAddress = address.filter(add => add.user.id === this.currentUser.user_id)[0]
-      this.address = filterAddress
+      const filterAddress = address.filter(add => {
+        this.checkedAddress = true
+        this.selectedAddresss = add.id
+        return add.user.id === this.currentUser.user_id
+      })
+      this.addresses = filterAddress
     })
+    console.log('adadsadasd')
     this.addressForm = this.formBuilder.group({
       rua: ['', Validators.required],
       numero: ['', Validators.required],
@@ -63,7 +72,10 @@ export class CheckoutComponent implements OnInit {
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
-      cep: ['', Validators.required, Validations.cepValidator]
+      cep: ['', [Validators.required, Validations.cepValidator]]
+    })
+    this.shippingForm = this.formBuilder.group({
+      shippping: ['', [Validators.required, Validations.cepValidator]]
     })
     this.cartService.cartDataObs$.subscribe(data => this.cartData = data);
     this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
@@ -108,15 +120,17 @@ export class CheckoutComponent implements OnInit {
     this.checkoutBtn = !this.checkoutBtn
   }
 
+  handleSelectAddress(addressId) {
+    console.log('aqui ', addressId)
+    this.selectedAddresss = addressId
+    this.checkedAddress = !this.checkedAddress
+  }
+
   onCheckout() {
     this.spinner.show().then(p => {
       console.log(p)
-     });
+    });
     this.cartService.CheckoutFromCart(this.currentUser.user_id);
-
-
-   //console.log(this.checkoutForm.value);
-
    }
 
 }

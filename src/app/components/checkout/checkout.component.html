@@ -20,10 +20,13 @@
         <div class="section-title">
           <h3 class="title">Endereço de Envio</h3>
         </div>
-        <div *ngIf="address">
-          <p>CEP: {{ address.cep }}</p>
-          <p>{{ address.rua }}, {{ address.numero }} {{ address.complemento }}</p>
-          <p>{{ address.bairro }} - {{ address.cidade }} - {{ address.estado }}</p>
+        <p><strong>{{ currentUser.name }}</strong></p>
+        <div *ngIf="addresses && !otherAddress">
+          <span *ngFor="let address of addresses" [ngClass]="{'red': (selectedAddresss === address.id && checkedAddress)}" class="address-card" (click)="handleSelectAddress(address.id)">
+            <p>{{ address.cep }}</p>
+            <p>{{ address.rua }}, {{ address.numero }} {{ address.complemento }}</p>
+            <p>{{ address.bairro }} - {{ address.cidade }} - {{ address.estado }}</p>
+          </span>
         </div>
         <div class="btn-container btn-outro">
           <button type="button" [disabled]="loading" (click)="handleAddress()" class="btn primary-btn" >
@@ -31,10 +34,9 @@
               *ngIf="loading"
               class="spinner-border spinner-border-sm mr-1"
             ></span>
-            Outro Endereço
+            {{!otherAddress ? 'Outro Endereço' : 'Voltar'}}
           </button>
         </div>
-
         <form *ngIf="otherAddress" [formGroup]="addressForm" (ngSubmit)="updateAddressSubmit()">
           <div class="form-group">
             <input
@@ -199,7 +201,7 @@
           Li e aceito os <a href="#">termos e condições</a>
         </label>
       </div>
-      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="!checkoutBtn || cartTotal <= 0 " (click)="onCheckout()">Finalizar Pedido</button>
+      <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="!checkoutBtn || cartTotal <= 0 || !checkedAddress" (click)="onCheckout()">Finalizar Pedido</button>
     </div>
     <!-- /Order Details -->
   </div>

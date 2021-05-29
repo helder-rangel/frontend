@@ -230,50 +230,40 @@ export class CartService {
 
   }
 
-  CheckoutFromCart(userId: number) {
-
-    this.httpClient.post(`${this.ServerURL}/pedidos`, null,{
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.currentUserSubject?.value["access_token"]}`,
-      })
-    }).subscribe((res: { success: Boolean }) => {
-      console.clear();
-
-      if (res.success) {
-
-
-        this.resetServerData();
-        this.httpClient.post(`${this.ServerURL}/pedidos`, {
-          userId: userId,
-          products: this.cartDataClient.prodData,
-          headers: new HttpHeaders({
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.currentUserSubject?.value["access_token"]}`,
-          })
-        }).subscribe((data: OrderConfirmationResponse) => {
-
-          this.orderService.getSingleOrder(data.order_id).then(prods => {
-            if (data.success) {
-              const navigationExtras: NavigationExtras = {
-                state: {
-                  message: data.message,
-                  products: prods,
-                  orderId: data.order_id,
-                  total: this.cartDataClient.total
-                }
-              };
-              this.spinner.hide().then();
-              this.router.navigate(['/thankyou'], navigationExtras).then(p => {
-                this.cartDataClient = {prodData: [{incart: 0, id: 0}], total: 0};
-                this.cartTotal$.next(0);
-                localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-              });
-            }
-          });
-
+  CheckoutFromCart(userId: string) {
+    if (!this.cartDataClient.prodData) return
+    try {
+      this.httpClient.post(`${this.ServerURL}/pedidos`, {
+        user_id: userId
+      }, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.currentUserSubject?.value["access_token"]}`,
         })
-      } else {
+      }).subscribe((data: OrderConfirmationResponse) => {
+        this.cartDataClient.prodData.map(prod => {
+          this.orderService.orderItems(data.id, prod.incart, prod.id)
+        })
+        this.orderService.getSingleOrder(data.id).then(prods => {
+          if (data) {
+            const navigationExtras: NavigationExtras = {
+              state: {
+                message: data,
+                products: prods,
+                orderId: data.id,
+                total: this.cartDataClient.total
+              }
+            };
+            this.spinner.hide().then();
+            this.router.navigate(['/thankyou'], navigationExtras).then(p => {
+              this.cartDataClient = {prodData: [{incart: 0, id: 0}], total: 0};
+              this.cartTotal$.next(0);
+              localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+            });
+          }
+        });
+      })
+    } catch (error) {
         this.spinner.hide().then();
         this.router.navigateByUrl('/checkout').then();
         this.toast.error(`Sorry, failed to book the order`, "Order Status", {
@@ -283,9 +273,7 @@ export class CartService {
           positionClass: 'toast-top-right'
         })
       }
-    })
-  }
-
+    }
 
   private CalculateTotal() {
     let Total = 0;
@@ -314,6 +302,7 @@ export class CartService {
 }
 
 interface OrderConfirmationResponse {
+  id: number;
   order_id: number;
   success: Boolean;
   message: String;

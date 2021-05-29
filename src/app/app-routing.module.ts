@@ -1,3 +1,4 @@
+import { OrderComponent } from './components/order/order.component';
 import { ThankyouComponent } from "./components/thankyou/thankyou.component";
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { CartComponentComponent } from "./components/cart-component/cart-component.component";
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: "checkout",
     component: CheckoutComponent,
+  },
+  {
+    path: "orders",
+    component: OrderComponent,
   },
   {
     path: "thankyou",
