@@ -1,5 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "boilerplate-angular",
+=======
+<<<<<<< HEAD
+  "name": "sports-store",
+=======
+  "name": "front2",
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
+>>>>>>> master
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,6 +15,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+<<<<<<< HEAD
     "e2e": "ng e2e"
   },
   "private": true,
@@ -26,6 +35,35 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
+=======
+<<<<<<< HEAD
+    "e2e": "ng e2e",
+    "json": "json-server data.js -p 3500 -m authMiddleware.js"
+=======
+    "e2e": "ng e2e"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~9.0.0",
+    "@angular/common": "~9.0.0",
+    "@angular/compiler": "~9.0.0",
+    "@angular/core": "~9.0.0",
+    "@angular/forms": "~9.0.0",
+    "@angular/platform-browser": "~9.0.0",
+    "@angular/platform-browser-dynamic": "~9.0.0",
+    "@angular/router": "~9.0.0",
+<<<<<<< HEAD
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "bootstrap": "^4.4.1",
+=======
+    "ngx-spinner": "^11.0.1",
+    "ngx-toastr": "^13.2.1",
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
+    "rxjs": "~6.5.4",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.10.2"
+>>>>>>> master
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.5",
@@ -33,10 +71,22 @@
     "@angular/compiler-cli": "~11.2.6",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+<<<<<<< HEAD
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
+=======
+    "codelyzer": "^5.1.2",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+<<<<<<< HEAD
+    "json-server": "^0.16.0",
+    "jsonwebtoken": "^8.5.1",
+=======
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
+    "karma": "~4.3.0",
+>>>>>>> master
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",

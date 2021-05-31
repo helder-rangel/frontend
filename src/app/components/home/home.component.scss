@@ -1,0 +1,11 @@
+.disabled{
+  cursor: not-allowed;
+}
+
+.product-img {
+  flex-shrink: 0;
+  width: 20vw;
+  height: 25vh;
+  object-fit: contain;
+  margin: auto;
+}
