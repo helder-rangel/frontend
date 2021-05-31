@@ -1,12 +1,22 @@
+<<<<<<< HEAD
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+=======
+>>>>>>> master
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/e2e",
     "module": "commonjs",
+<<<<<<< HEAD
+    "target": "es2018",
+    "types": [
+      "jasmine",
+=======
     "target": "es5",
     "types": [
       "jasmine",
       "jasminewd2",
+>>>>>>> master
       "node"
     ]
   }

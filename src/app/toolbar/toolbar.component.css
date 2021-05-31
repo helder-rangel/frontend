@@ -1,0 +1,14 @@
+.nav {
+  display: inline-flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-link {
+  margin-left: 2rem;
+  color: #FFF;
+  text-decoration: none;
+}
+

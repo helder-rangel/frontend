@@ -1,3 +1,89 @@
+<<<<<<< HEAD
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { HttpClientModule } from '@angular/common/http'
+import { AngularTokenModule } from 'angular-token'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
+=======
+<<<<<<< HEAD
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from "./app.component";
+import { StoreModule } from './store/store.module';
+>>>>>>> master
+
+import { DemoMaterialModule } from './material-module'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { RegisterComponent } from './register/register.component'
+import { StoreModule } from './model/store.module'
+import { ToolbarComponent } from './toolbar/toolbar.component'
+import { LoginComponent } from './login/login.component'
+import { AuthService } from './services/auth.service'
+import { AuthGuard } from './guards/auth.guard'
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { AdminComponent } from './admin/admin.component'
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    ToolbarComponent,
+    LoginComponent,
+    PageNotFoundComponent,
+    AdminComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    FormsModule,
+    DemoMaterialModule,
+    ReactiveFormsModule,
+    StoreModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularTokenModule.forRoot({
+      apiBase: 'http://localhost:3000/api',
+      // apiPath: null,
+
+      // signInPath: 'auth/sign_in',
+      // signInRedirect: null,
+      // signInStoredUrlStorageKey: null,
+
+      // signOutPath: 'auth/sign_out',
+      // validateTokenPath: 'auth/validate_token',
+      // signOutFailedValidate: false,
+
+      // registerAccountPath: 'auth',
+      // deleteAccountPath: 'auth',
+      // registerAccountCallback: window.location.href,
+
+      // updatePasswordPath: 'auth',
+      // resetPasswordPath: 'auth/password',
+      // resetPasswordCallback: window.location.href,
+
+      // oAuthBase: window.location.origin,
+      // oAuthPaths: {
+      //   github: 'auth/github',
+      // },
+      // oAuthCallbackPath: 'oauth_callback',
+      // oAuthWindowType: 'newWindow',
+      // oAuthWindowOptions: null,
+    }),
+  ],
+  providers: [AngularTokenModule, AuthService, AuthGuard],
+  bootstrap: [AppComponent],
+})
+<<<<<<< HEAD
+export class AppModule {}
+=======
+export class AppModule { }
+=======
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -54,3 +140,5 @@ import { OrderComponent } from './components/order/order.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
+>>>>>>> master
