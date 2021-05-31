@@ -1,0 +1,11 @@
+<div class="section">
+  <div class="container">
+    <h3>Pedidos</h3>
+    <div id="accordion">
+      <div class="card card-order" *ngFor="let order of orders">
+        Pedido: {{ order.pedido.id }}
+        <p>Quantidade{{ order.quantidate }} - {{ order.produto.descricao_curta }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+<<<<<<< HEAD
     "SportsStore": {
       "projectType": "application",
       "schematics": {
@@ -10,6 +11,16 @@
           "skipTests": true
         },
         "@schematics/angular:component": {
+=======
+    "front2": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
           "skipTests": true
         },
         "@schematics/angular:directive": {
@@ -38,7 +49,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+<<<<<<< HEAD
             "outputPath": "dist/SportsStore",
+=======
+            "outputPath": "dist/front2",
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -49,11 +64,24 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
+=======
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/slick.min.js",
+              "src/assets/js/nouislider.min.js",
+              "src/assets/js/jquery.zoom.min.js"
+            ]
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
           },
           "configurations": {
             "production": {
@@ -89,18 +117,30 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+<<<<<<< HEAD
             "browserTarget": "SportsStore:build"
           },
           "configurations": {
             "production": {
               "browserTarget": "SportsStore:build:production"
+=======
+            "browserTarget": "front2:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "front2:build:production"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
+<<<<<<< HEAD
             "browserTarget": "SportsStore:build"
+=======
+            "browserTarget": "front2:build"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
           }
         },
         "test": {
@@ -115,7 +155,11 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.css"
+=======
+              "src/styles.scss"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
             ],
             "scripts": []
           }
@@ -137,19 +181,33 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
+<<<<<<< HEAD
             "devServerTarget": "SportsStore:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "SportsStore:serve:production"
+=======
+            "devServerTarget": "front2:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "front2:serve:production"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
             }
           }
         }
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "SportsStore",
   "cli": {
     "analytics": "6a2e566e-4922-4c17-a02e-7158b24039ed"
+=======
+  "defaultProject": "front2",
+  "cli": {
+    "analytics": "eae05cf9-d98a-4182-8b55-aa5be7779426"
+>>>>>>> f36487e2b15693a2d0ba5ed1899010ab220fdc3e
   }
 }
